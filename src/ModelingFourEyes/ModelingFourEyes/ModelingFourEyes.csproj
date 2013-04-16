@@ -48,15 +48,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Guard.cs" />
-    <Compile Include="InMemoryRequestRepository.cs" />
     <Compile Include="IRequestContent.cs" />
     <Compile Include="IRequestHandler.cs" />
     <Compile Include="IRequestRepository.cs" />
-    <Compile Include="LaunchMissileRequestContent.cs" />
-    <Compile Include="LaunchMissileRequestHandler.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RequestContent.cs" />
+    <Compile Include="Request.cs" />
     <Compile Include="RequestCoordinator.cs" />
     <Compile Include="Requested.cs" />
     <Compile Include="Status.cs" />

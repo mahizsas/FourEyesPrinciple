@@ -49,8 +49,10 @@ namespace ModelingFourEyes
 
         private void ChangeStatus(Status status)
         {
+            if (Status != Status.Waiting)
+                throw new InvalidOperationException("This request is already accepted or declined.");
             if (status == Status.Waiting)
-                throw new InvalidOperationException("The status shouldn't be changed to waiting after creation.");
+                throw new InvalidOperationException("The status shouldn't be changed to waiting after creation.");            
 
             Status = status;
         }
