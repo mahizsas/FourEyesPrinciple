@@ -12,24 +12,13 @@ namespace ModelingFourEyes.Test
     public class WhenLaunchingMissile : Scenario
     {
         private Request _requestUnderTest;
-        private RequestCoordinator _coordinator;
         private Mock<IRequestHandler<LaunchMissileRequestContent>> _launchMissileRequestHandler;
+        private IRequestRepository _repository;
 
         public override void Given()
         {
-            _launchMissileRequestHandler = new  Mock<IRequestHandler<LaunchMissileRequestContent>>();
+            DependenciesAreRegistered();
 
-            var kernel = new StandardKernel();
-            kernel
-                .Bind<IRequestHandler<LaunchMissileRequestContent>>()
-                .ToConstant(_launchMissileRequestHandler.Object);
-            
-            _coordinator = new RequestCoordinator(
-                new InMemoryRepository(), kernel);            
-        }
-
-        public override void When()
-        {
             _requestUnderTest = new Request(
                 new Requested(new User("MiniMe")),
                 new LaunchMissileRequestContent()
@@ -38,8 +27,14 @@ namespace ModelingFourEyes.Test
                     Destination = "The Ozone Layer"
                 });
 
-            _coordinator.Create(_requestUnderTest);
-            _coordinator.Accept(_requestUnderTest.Id, new User("DrEvil"));            
+            _repository.Add(_requestUnderTest);
+        }
+
+        public override void When()
+        {                    
+            var request = _repository.GetById(_requestUnderTest.Id); 
+
+            request.Accept(new Supervised(new User("DrEvil")));              
         }
 
         [TestMethod]
@@ -67,6 +62,16 @@ namespace ModelingFourEyes.Test
         public void TheRequestIsAcceptedByDrEvil()
         {
             Assert.AreEqual(new User("DrEvil"), _requestUnderTest.Supervised.By);
+        }
+
+        private void DependenciesAreRegistered()
+        {
+            _launchMissileRequestHandler = new Mock<IRequestHandler<LaunchMissileRequestContent>>();
+            _repository = new InMemoryRepository();
+            
+            DomainEvents.Kernel.Bind<IRequestHandler<LaunchMissileRequestContent>>().ToConstant(_launchMissileRequestHandler.Object);
+            DomainEvents.Kernel.Bind<IEventHandler<RequestApprovedEvent>>().ToConstant(new RequestApprovedEventHandler(DomainEvents.Kernel, _repository));
+            DomainEvents.Kernel.Bind<IRequestRepository>().ToConstant(_repository);         
         }
     }
 }

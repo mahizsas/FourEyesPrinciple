@@ -1,5 +1,6 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Ninject;
 
 namespace ModelingFourEyes.Test
 {    
@@ -8,7 +9,9 @@ namespace ModelingFourEyes.Test
     {
         [TestInitialize]
         public void TestSetup()
-        {
+        {          
+            DomainEvents.Kernel = new StandardKernel();
+
             Given();
             When();
         }

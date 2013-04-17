@@ -47,14 +47,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DomainEvents.cs" />
     <Compile Include="Guard.cs" />
+    <Compile Include="IEventHandler.cs" />
     <Compile Include="IRequestContent.cs" />
     <Compile Include="IRequestHandler.cs" />
     <Compile Include="IRequestRepository.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Request.cs" />
-    <Compile Include="RequestCoordinator.cs" />
+    <Compile Include="RequestApprovedEvent.cs" />
+    <Compile Include="RequestApprovedEventHandler.cs" />
     <Compile Include="Requested.cs" />
     <Compile Include="Status.cs" />
     <Compile Include="Supervised.cs" />

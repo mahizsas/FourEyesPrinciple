@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System.Security;
+using Moq;
+using Ninject;
 
 namespace ModelingFourEyes.Test
 {
@@ -14,7 +12,7 @@ namespace ModelingFourEyes.Test
         private bool _invalidOperationThrown;
 
         public override void Given()
-        {
+        {          
             _sut = new Request(
                 new Requested(new User("JefC")),
                 new LaunchMissileRequestContent() { Destination = "Sahara", MissileName = "ABC123" });

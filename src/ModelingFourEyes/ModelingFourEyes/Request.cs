@@ -9,14 +9,14 @@ namespace ModelingFourEyes
     {
         public Request(Requested requested, IRequestContent content)
         {
-            Guard.ForEmpty(requested, "headers");
+            Guard.ForEmpty(requested, "requested");
             Guard.ForEmpty(content, "content");
 
             Id = Guid.NewGuid();
 
             Requested = requested;
-            Status = Status.Waiting;
             Content = content;
+            Status = Status.Waiting;
         }
 
         public Guid Id { get; private set; }
@@ -30,31 +30,31 @@ namespace ModelingFourEyes
         public Status Status { get; private set; }
 
         public void Accept(Supervised supervised)
-        {
-            Guard.ForEmpty(supervised, "supervised");
-            Guard.SupervisingUserBeingTheRequestingUser(Requested.By, supervised.By);
+        {         
+            ChangeStatus(Status.Accepted, supervised);
 
-            ChangeStatus(Status.Accepted);
-            Supervised = supervised;
+            DomainEvents.Raise<RequestApprovedEvent>(
+                new RequestApprovedEvent() { RequestId = Id });
         }
 
         public void Decline(Supervised supervised)
+        {           
+            ChangeStatus(Status.Declined, supervised);            
+        }
+
+        private void ChangeStatus(Status status, Supervised supervised)
         {
             Guard.ForEmpty(supervised, "supervised");
             Guard.SupervisingUserBeingTheRequestingUser(Requested.By, supervised.By);
 
-            ChangeStatus(Status.Declined);
-            Supervised = supervised;
-        }
-
-        private void ChangeStatus(Status status)
-        {
             if (Status != Status.Waiting)
                 throw new InvalidOperationException("This request is already accepted or declined.");
             if (status == Status.Waiting)
-                throw new InvalidOperationException("The status shouldn't be changed to waiting after creation.");            
+                throw new InvalidOperationException("The status shouldn't be changed to Waiting after creation.");            
 
             Status = status;
+            Supervised = supervised;
+
         }
     }                      
 }
