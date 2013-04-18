@@ -1,11 +1,20 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
+# Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ModelingFourEyes", "ModelingFourEyes\ModelingFourEyes.csproj", "{92B945DD-438F-4491-AEF9-26264DEBF86C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ModelingFourEyes.Test", "ModelingFourEyes.Test\ModelingFourEyes.Test.csproj", "{65D57220-F162-4BBE-BC7A-67CD0C75E550}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{D5674AFB-DD7F-4C6C-9C72-5B298E8F470D}"
+	ProjectSection(SolutionItems) = preProject
+		local.testsettings = local.testsettings
+		ModelingFourEyes.vsmdi = ModelingFourEyes.vsmdi
+	EndProjectSection
+EndProject
 Global
+	GlobalSection(TestCaseManagementSettings) = postSolution
+		CategoryFile = ModelingFourEyes.vsmdi
+	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU

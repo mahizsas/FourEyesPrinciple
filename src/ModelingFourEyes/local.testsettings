@@ -15,7 +15,7 @@
           <Configuration>
             <CodeCoverage xmlns="">
               <Regular>
-                <CodeCoverageItem binaryFile="ModelingFourEyes\bin\Debug\ModelingFourEyes.exe" pdbFile="ModelingFourEyes\bin\Debug\ModelingFourEyes.pdb" instrumentInPlace="true" />
+                <CodeCoverageItem binaryFile="ModelingFourEyes\bin\Debug\ModelingFourEyes.dll" pdbFile="ModelingFourEyes\bin\Debug\ModelingFourEyes.pdb" instrumentInPlace="true" />
               </Regular>
             </CodeCoverage>
           </Configuration>

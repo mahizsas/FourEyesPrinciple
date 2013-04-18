@@ -1,17 +1,10 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security;
-using System.Text;
-using Newtonsoft.Json;
+﻿﻿using System;
 using Ninject;
 
 namespace ModelingFourEyes
 {
     class Program
-    {      
-
+    {
         static void Main(string[] args)
         {
             var kernel = new StandardKernel();
@@ -45,7 +38,7 @@ namespace ModelingFourEyes
             {
                 Console.WriteLine("-----------------------------------------");
                 Console.WriteLine("Id: " + req.Id);
-                Console.WriteLine("Status: " + req.Status);                
+                Console.WriteLine("Status: " + req.Status);
                 Console.WriteLine("Summary: " + req.Content.Summary);
                 Console.WriteLine("-----------------------------------------");
             }
