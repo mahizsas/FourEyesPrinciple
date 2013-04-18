@@ -12,7 +12,7 @@ namespace ModelingFourEyes.Test
     public class WhenLaunchingMissile : Scenario
     {
         private Request _requestUnderTest;
-        private Mock<IRequestHandler<LaunchMissileRequestContent>> _launchMissileRequestHandler;
+        private Mock<IRequestHandler<TestLaunchMissileRequestContent>> _launchMissileRequestHandler;
         private IRequestRepository _repository;
 
         public override void Given()
@@ -21,7 +21,7 @@ namespace ModelingFourEyes.Test
 
             _requestUnderTest = new Request(
                 new Requested(new User("MiniMe")),
-                new LaunchMissileRequestContent()
+                new TestLaunchMissileRequestContent()
                 {
                     MissileName = "V-2",
                     Destination = "The Ozone Layer"
@@ -42,7 +42,7 @@ namespace ModelingFourEyes.Test
         {
             _launchMissileRequestHandler.Verify(
                 x => x.OnAccepted(
-                    It.Is<LaunchMissileRequestContent>(
+                    It.Is<TestLaunchMissileRequestContent>(
                         req => req.MissileName == "V-2" && req.Destination == "The Ozone Layer")));
         }
 
@@ -66,11 +66,11 @@ namespace ModelingFourEyes.Test
 
         private void DependenciesAreRegistered()
         {
-            _launchMissileRequestHandler = new Mock<IRequestHandler<LaunchMissileRequestContent>>();
+            _launchMissileRequestHandler = new Mock<IRequestHandler<TestLaunchMissileRequestContent>>();
             _repository = new InMemoryRepository();
-            
-            DomainEvents.Kernel.Bind<IRequestHandler<LaunchMissileRequestContent>>().ToConstant(_launchMissileRequestHandler.Object);
-            DomainEvents.Kernel.Bind<IEventHandler<RequestApprovedEvent>>().ToConstant(new RequestApprovedEventHandler(DomainEvents.Kernel, _repository));
+
+            DomainEvents.Kernel.Bind<IRequestHandler<TestLaunchMissileRequestContent>>().ToConstant(_launchMissileRequestHandler.Object);
+            DomainEvents.Kernel.Bind<IEventHandler<RequestAcceptedEvent>>().ToConstant(new RequestAcceptedEventHandler(DomainEvents.Kernel, _repository));
             DomainEvents.Kernel.Bind<IRequestRepository>().ToConstant(_repository);         
         }
     }

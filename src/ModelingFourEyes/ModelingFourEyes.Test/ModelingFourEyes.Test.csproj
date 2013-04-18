@@ -59,8 +59,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="InMemoryRequestRepository.cs" />
-    <Compile Include="LaunchMissileRequestContent.cs" />
+    <Compile Include="TestLaunchMissileRequestContent.cs" />
     <Compile Include="Scenario.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="WhenDecliningRequestAfterItHasBeenAccepted.cs" />

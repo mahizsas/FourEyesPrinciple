@@ -6,18 +6,18 @@ using Ninject;
 
 namespace ModelingFourEyes
 {
-    public class RequestApprovedEventHandler : IEventHandler<RequestApprovedEvent>
+    public class RequestAcceptedEventHandler : IEventHandler<RequestAcceptedEvent>
     {
         private readonly IKernel _kernel;
         private readonly IRequestRepository _requestRepository;
 
-        public RequestApprovedEventHandler(IKernel kernel, IRequestRepository requestRepository)
+        public RequestAcceptedEventHandler(IKernel kernel, IRequestRepository requestRepository)
         {
             _kernel = kernel;
             _requestRepository = requestRepository;
         }
 
-        public void Handle(RequestApprovedEvent @event)
+        public void Handle(RequestAcceptedEvent @event)
         {
             var request = _requestRepository.GetById(@event.RequestId);
 

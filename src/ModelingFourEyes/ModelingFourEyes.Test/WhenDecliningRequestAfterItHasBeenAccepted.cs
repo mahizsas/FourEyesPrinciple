@@ -15,7 +15,7 @@ namespace ModelingFourEyes.Test
         {          
             _sut = new Request(
                 new Requested(new User("JefC")),
-                new LaunchMissileRequestContent() { Destination = "Sahara", MissileName = "ABC123" });
+                new TestLaunchMissileRequestContent() { Destination = "Sahara", MissileName = "ABC123" });
 
             _sut.Accept(new Supervised(new User("KristienB")));
         }

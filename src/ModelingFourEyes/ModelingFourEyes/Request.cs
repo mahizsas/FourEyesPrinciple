@@ -33,8 +33,7 @@ namespace ModelingFourEyes
         {         
             ChangeStatus(Status.Accepted, supervised);
 
-            DomainEvents.Raise<RequestApprovedEvent>(
-                new RequestApprovedEvent() { RequestId = Id });
+            DomainEvents.Raise(new RequestAcceptedEvent() { RequestId = Id });
         }
 
         public void Decline(Supervised supervised)
@@ -54,7 +53,6 @@ namespace ModelingFourEyes
 
             Status = status;
             Supervised = supervised;
-
         }
     }                      
 }

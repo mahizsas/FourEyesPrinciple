@@ -19,7 +19,7 @@ namespace ModelingFourEyes.Test
         {
             _sut = new Request(
                 new Requested(_sameUser),
-                new LaunchMissileRequestContent());            
+                new TestLaunchMissileRequestContent());            
         }
 
         public override void When()

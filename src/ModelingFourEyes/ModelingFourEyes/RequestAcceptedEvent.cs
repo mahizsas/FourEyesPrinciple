@@ -5,7 +5,7 @@ using System.Text;
 
 namespace ModelingFourEyes
 {
-    public class RequestApprovedEvent
+    public class RequestAcceptedEvent
     {
         public Guid RequestId { get; set; }
     }

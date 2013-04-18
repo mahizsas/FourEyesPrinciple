@@ -5,7 +5,7 @@ using System.Text;
 
 namespace ModelingFourEyes
 {
-    public class LaunchMissileRequestContent : IRequestContent
+    public class TestLaunchMissileRequestContent : IRequestContent
     {
         public string MissileName { get; set; }
 

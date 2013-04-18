@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace ModelingFourEyes.Test
+namespace ModelingFourEyes
 {
     public class InMemoryRepository : IRequestRepository
     {
