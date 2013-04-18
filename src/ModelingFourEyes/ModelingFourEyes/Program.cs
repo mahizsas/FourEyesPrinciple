@@ -45,7 +45,7 @@ namespace ModelingFourEyes
             {
                 Console.WriteLine("-----------------------------------------");
                 Console.WriteLine("Id: " + req.Id);
-                Console.WriteLine("Status: " + req.Status);
+                Console.WriteLine("Status: " + req.Status);                
                 Console.WriteLine("Summary: " + req.Content.Summary);
                 Console.WriteLine("-----------------------------------------");
             }

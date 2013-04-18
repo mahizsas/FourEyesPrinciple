@@ -54,5 +54,20 @@ namespace ModelingFourEyes
             Status = status;
             Supervised = supervised;
         }
+
+        public override bool Equals(object obj)
+        {
+            if (obj == null || GetType() != obj.GetType())
+                return false;
+
+            var other = obj as Request;
+
+            return Id == other.Id;
+        }
+
+        public override int GetHashCode()
+        {
+            return this.Id.GetHashCode();
+        }
     }                      
 }
